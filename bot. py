@@ -1,0 +1,13 @@
+import os
+from telegram import Update
+from telegram.ext import Application, MessageHandler, ContextTypes, filters
+
+async def video(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("વિડિયો મળ્યો ✅")
+
+TOKEN = os.environ["BOT_TOKEN"]
+
+app = Application.builder().token(TOKEN).build()
+app.add_handler(MessageHandler(filters.VIDEO, video))
+
+app.run_polling()
